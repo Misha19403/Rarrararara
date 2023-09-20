@@ -1,0 +1,69 @@
+print("Script successfully loaded")
+
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Robojini/Tuturial_UI_Library/main/UI_Template_1"))()
+
+local Window = Library.CreateLib("Pet simulator x", "RJTheme3")
+
+local Tab = Window:NewTab("Player")
+
+local Section = Tab:NewSection("Noclip")
+
+Section:NewButton("Noclip", "ButtonInfo", function()
+
+local Noclip = nil
+local Clip = nil
+
+function noclip()
+	Clip = false
+	local function Nocl()
+		if Clip == false and game.Players.LocalPlayer.Character ~= nil then
+			for _,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+				if v:IsA('BasePart') and v.CanCollide and v.Name ~= floatName then
+					v.CanCollide = false
+				end
+			end
+		end
+		wait(0.21)
+	end
+	Noclip = game:GetService('RunService').Stepped:Connect(Nocl)
+end
+
+function clip()
+	if Noclip then Noclip:Disconnect() end
+	Clip = true
+end
+
+noclip()
+end)
+
+local Tab = Window:NewTab("Jump")
+
+local Section = Tab:NewSection("Jump")
+
+Section:NewButton("Jump hack", "ButtonInfo", function()
+game.Players.LocalPlayer.Character.Humanoid.JumpPower = 500
+end)
+
+Section:NewButton("Default jump", "ButtonInfo", function()
+game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50
+end)
+
+local Tab = Window:NewTab("Speed")
+
+local Section = Tab:NewSection("Speed")
+
+Section:NewButton("Speed hack", "ButtonInfo", function()
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 200
+end)
+
+Section:NewButton("Defoult speed", "ButtonInfo", function()
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 50
+end)
+
+local Tab = Window:NewTab("Teleports")
+
+local Section = Tab:NewSection("Teleports")
+
+Section:NewButton("Sky", "ButtonInfo", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, 221.331116, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+end)
